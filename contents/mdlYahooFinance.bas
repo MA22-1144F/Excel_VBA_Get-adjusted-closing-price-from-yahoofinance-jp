@@ -1,13 +1,13 @@
 Attribute VB_Name = "mdlYahooFinance"
 ' ===============================================
-' ƒ‚ƒWƒ…[ƒ‹–¼: mdlYahooFinance
-' à–¾: Yahoo Finance‚©‚çŠ”‰¿Œn—ñƒf[ƒ^‚ğæ“¾iŠ®‘S“®ì”Åj
+' ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½: mdlYahooFinance
+' ï¿½ï¿½ï¿½ï¿½: Yahoo Financeï¿½ï¿½ï¿½çŠ”ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½æ“¾ï¿½iï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½ï¿½Åj
 ' ===============================================
 
 Option Explicit
 
 ' ===============================================
-' ƒƒCƒ“ˆ—FcŒ^ƒŒƒCƒAƒEƒgi„§j
+' ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Fï¿½cï¿½^ï¿½ï¿½ï¿½Cï¿½Aï¿½Eï¿½gï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j
 ' ===============================================
 Public Sub GetYahooFinanceData_Vertical(companyName As String, stockCode As String, _
                                         startDate As Date, endDate As Date, timeFrame As String)
@@ -20,40 +20,40 @@ Public Sub GetYahooFinanceData_Vertical(companyName As String, stockCode As Stri
     Dim i As Long
     Dim totalCount As Long
     
-    ' Šù‘¶‚ÌƒV[ƒg‚ğƒNƒŠƒA‚Ü‚½‚ÍV‹Kì¬
+    ' ï¿½ï¿½ï¿½ï¿½ï¿½ÌƒVï¿½[ï¿½gï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Aï¿½Ü‚ï¿½ï¿½ÍVï¿½Kï¿½ì¬
     On Error Resume Next
-    Set ws = ThisWorkbook.Worksheets("YahooŠ”‰¿ƒf[ƒ^")
+    Set ws = ThisWorkbook.Worksheets("Yahooï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^")
     If ws Is Nothing Then
         Set ws = ThisWorkbook.Worksheets.Add
-        ws.Name = "YahooŠ”‰¿ƒf[ƒ^"
+        ws.Name = "Yahooï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^"
     Else
         ws.cells.Clear
     End If
     On Error GoTo 0
     
     Application.ScreenUpdating = False
-    Application.StatusBar = "ƒf[ƒ^æ“¾’†..."
+    Application.StatusBar = "ï¿½fï¿½[ï¿½^ï¿½æ“¾ï¿½ï¿½..."
     
-    ' ƒwƒbƒ_[s
-    ws.cells(1, 1).Value = "‰ïĞ–¼"
-    ws.cells(1, 2).Value = "ØŒ”ƒR[ƒh"
-    ws.cells(1, 3).Value = "“ú•t"
-    ws.cells(1, 4).Value = "’²®ŒãI’l"
+    ' ï¿½wï¿½bï¿½_ï¿½[ï¿½s
+    ws.cells(1, 1).Value = "ï¿½ï¿½Ğ–ï¿½"
+    ws.cells(1, 2).Value = "ï¿½ØŒï¿½ï¿½Rï¿½[ï¿½h"
+    ws.cells(1, 3).Value = "ï¿½ï¿½ï¿½t"
+    ws.cells(1, 4).Value = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½l"
     
     outputRow = 2
     totalCount = 0
     
-    ' ‚·‚×‚Ä‚Ìƒy[ƒW‚©‚çƒf[ƒ^‚ğæ“¾
+    ' ï¿½ï¿½ï¿½×‚Ä‚Ìƒyï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½æ“¾
     pageNum = 1
     hasMorePages = True
     
     Do While hasMorePages
-        Application.StatusBar = "ƒf[ƒ^æ“¾’†... ƒy[ƒW " & pageNum
+        Application.StatusBar = "ï¿½fï¿½[ï¿½^ï¿½æ“¾ï¿½ï¿½... ï¿½yï¿½[ï¿½W " & pageNum
         
         pageData = GetPageData(stockCode, startDate, endDate, timeFrame, pageNum)
         
         If Not IsEmpty(pageData) Then
-            ' ƒy[ƒWƒf[ƒ^‚ğ’¼ÚƒV[ƒg‚É‘‚«‚İ
+            ' ï¿½yï¿½[ï¿½Wï¿½fï¿½[ï¿½^ï¿½ğ’¼ÚƒVï¿½[ï¿½gï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             For i = LBound(pageData, 1) To UBound(pageData, 1)
                 ws.cells(outputRow, 1).Value = companyName
                 ws.cells(outputRow, 2).Value = stockCode
@@ -63,7 +63,7 @@ Public Sub GetYahooFinanceData_Vertical(companyName As String, stockCode As Stri
                 totalCount = totalCount + 1
             Next i
             
-            ' Ÿƒy[ƒW‚ÌŠm”F
+            ' ï¿½ï¿½ï¿½yï¿½[ï¿½Wï¿½ÌŠmï¿½F
             Dim pageRows As Long
             pageRows = UBound(pageData, 1) - LBound(pageData, 1) + 1
             If pageRows < 100 Then
@@ -75,13 +75,13 @@ Public Sub GetYahooFinanceData_Vertical(companyName As String, stockCode As Stri
             hasMorePages = False
         End If
         
-        ' ˆÀ‘S‘•’uFÅ‘å20ƒy[ƒW‚Ü‚Å
+        ' ï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½uï¿½Fï¿½Å‘ï¿½20ï¿½yï¿½[ï¿½Wï¿½Ü‚ï¿½
         If pageNum > 20 Then
             hasMorePages = False
         End If
     Loop
     
-    ' ‘®İ’è
+    ' ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
     If totalCount > 0 Then
         With ws
             .rows(1).Font.Bold = True
@@ -96,18 +96,18 @@ Public Sub GetYahooFinanceData_Vertical(companyName As String, stockCode As Stri
     Application.ScreenUpdating = True
     
     If totalCount > 0 Then
-        MsgBox "ƒf[ƒ^æ“¾Š®—¹I" & vbCrLf & _
-               "æ“¾Œ”: " & totalCount & "Œ" & vbCrLf & _
-               "æ“¾ƒy[ƒW”: " & pageNum & "ƒy[ƒW", vbInformation
+        MsgBox "ï¿½fï¿½[ï¿½^ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½I" & vbCrLf & _
+               "ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½: " & totalCount & "ï¿½ï¿½" & vbCrLf & _
+               "ï¿½æ“¾ï¿½yï¿½[ï¿½Wï¿½ï¿½: " & pageNum & "ï¿½yï¿½[ï¿½W", vbInformation
     Else
-        MsgBox "ƒf[ƒ^‚ªæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B" & vbCrLf & _
-               "ØŒ”ƒR[ƒh‚â“ú•t”ÍˆÍ‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation
+        MsgBox "ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½B" & vbCrLf & _
+               "ï¿½ØŒï¿½ï¿½Rï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½tï¿½ÍˆÍ‚ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B", vbExclamation
     End If
     
 End Sub
 
 ' ===============================================
-' ƒƒCƒ“ˆ—F‰¡Œ^ƒŒƒCƒAƒEƒg
+' ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Fï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½Cï¿½Aï¿½Eï¿½g
 ' ===============================================
 Public Sub GetYahooFinanceData_Horizontal(companyName As String, stockCode As String, _
                                          startDate As Date, endDate As Date, timeFrame As String)
@@ -123,46 +123,46 @@ Public Sub GetYahooFinanceData_Horizontal(companyName As String, stockCode As St
     
     maxCols = 16000
     
-    ' Šù‘¶‚ÌƒV[ƒg‚ğƒNƒŠƒA‚Ü‚½‚ÍV‹Kì¬
+    ' ï¿½ï¿½ï¿½ï¿½ï¿½ÌƒVï¿½[ï¿½gï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Aï¿½Ü‚ï¿½ï¿½ÍVï¿½Kï¿½ì¬
     On Error Resume Next
-    Set ws = ThisWorkbook.Worksheets("YahooŠ”‰¿ƒf[ƒ^")
+    Set ws = ThisWorkbook.Worksheets("Yahooï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^")
     If ws Is Nothing Then
         Set ws = ThisWorkbook.Worksheets.Add
-        ws.Name = "YahooŠ”‰¿ƒf[ƒ^"
+        ws.Name = "Yahooï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^"
     Else
         ws.cells.Clear
     End If
     On Error GoTo 0
     
     Application.ScreenUpdating = False
-    Application.StatusBar = "ƒf[ƒ^æ“¾’†..."
+    Application.StatusBar = "ï¿½fï¿½[ï¿½^ï¿½æ“¾ï¿½ï¿½..."
     
-    ' ƒwƒbƒ_[
-    ws.cells(1, 1).Value = "‰ïĞ–¼"
-    ws.cells(1, 2).Value = "ØŒ”ƒR[ƒh"
+    ' ï¿½wï¿½bï¿½_ï¿½[
+    ws.cells(1, 1).Value = "ï¿½ï¿½Ğ–ï¿½"
+    ws.cells(1, 2).Value = "ï¿½ØŒï¿½ï¿½Rï¿½[ï¿½h"
     ws.cells(2, 1).Value = companyName
     ws.cells(2, 2).Value = stockCode
     
     outputCol = 3
     totalCount = 0
     
-    ' ‚·‚×‚Ä‚Ìƒy[ƒW‚©‚çƒf[ƒ^‚ğæ“¾
+    ' ï¿½ï¿½ï¿½×‚Ä‚Ìƒyï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½æ“¾
     pageNum = 1
     hasMorePages = True
     
     Do While hasMorePages
-        Application.StatusBar = "ƒf[ƒ^æ“¾’†... ƒy[ƒW " & pageNum
+        Application.StatusBar = "ï¿½fï¿½[ï¿½^ï¿½æ“¾ï¿½ï¿½... ï¿½yï¿½[ï¿½W " & pageNum
         
         pageData = GetPageData(stockCode, startDate, endDate, timeFrame, pageNum)
         
         If Not IsEmpty(pageData) Then
-            ' —ñ”§ŒÀƒ`ƒFƒbƒN
+            ' ï¿½ñ”ï¿½ï¿½ï¿½ï¿½`ï¿½Fï¿½bï¿½N
             If outputCol + UBound(pageData, 1) - LBound(pageData, 1) > maxCols Then
-                MsgBox "Œx: ƒf[ƒ^Œ”‚ª‘½‚·‚¬‚é‚½‚ßA" & totalCount & "Œ‚Å‘Å‚¿Ø‚è‚Ü‚·B", vbExclamation
+                MsgBox "ï¿½xï¿½ï¿½: ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ßA" & totalCount & "ï¿½ï¿½ï¿½Å‘Å‚ï¿½ï¿½Ø‚ï¿½Ü‚ï¿½ï¿½B", vbExclamation
                 Exit Do
             End If
             
-            ' ƒy[ƒWƒf[ƒ^‚ğ’¼ÚƒV[ƒg‚É‘‚«‚İ
+            ' ï¿½yï¿½[ï¿½Wï¿½fï¿½[ï¿½^ï¿½ğ’¼ÚƒVï¿½[ï¿½gï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             For i = LBound(pageData, 1) To UBound(pageData, 1)
                 ws.cells(1, outputCol).Value = pageData(i, 1)
                 ws.cells(2, outputCol).Value = pageData(i, 2)
@@ -170,7 +170,7 @@ Public Sub GetYahooFinanceData_Horizontal(companyName As String, stockCode As St
                 totalCount = totalCount + 1
             Next i
             
-            ' Ÿƒy[ƒW‚ÌŠm”F
+            ' ï¿½ï¿½ï¿½yï¿½[ï¿½Wï¿½ÌŠmï¿½F
             Dim pageRows As Long
             pageRows = UBound(pageData, 1) - LBound(pageData, 1) + 1
             If pageRows < 100 Then
@@ -187,7 +187,7 @@ Public Sub GetYahooFinanceData_Horizontal(companyName As String, stockCode As St
         End If
     Loop
     
-    ' ‘®İ’è
+    ' ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
     If totalCount > 0 Then
         With ws
             .rows(1).Font.Bold = True
@@ -203,17 +203,17 @@ Public Sub GetYahooFinanceData_Horizontal(companyName As String, stockCode As St
     Application.ScreenUpdating = True
     
     If totalCount > 0 Then
-        MsgBox "ƒf[ƒ^æ“¾Š®—¹I" & vbCrLf & _
-               "æ“¾Œ”: " & totalCount & "Œ" & vbCrLf & _
-               "æ“¾ƒy[ƒW”: " & pageNum & "ƒy[ƒW", vbInformation
+        MsgBox "ï¿½fï¿½[ï¿½^ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½I" & vbCrLf & _
+               "ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½: " & totalCount & "ï¿½ï¿½" & vbCrLf & _
+               "ï¿½æ“¾ï¿½yï¿½[ï¿½Wï¿½ï¿½: " & pageNum & "ï¿½yï¿½[ï¿½W", vbInformation
     Else
-        MsgBox "ƒf[ƒ^‚ªæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B", vbExclamation
+        MsgBox "ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½B", vbExclamation
     End If
     
 End Sub
 
 ' ===============================================
-' 1ƒy[ƒW•ª‚Ìƒf[ƒ^‚ğæ“¾
+' 1ï¿½yï¿½[ï¿½Wï¿½ï¿½ï¿½Ìƒfï¿½[ï¿½^ï¿½ï¿½ï¿½æ“¾
 ' ===============================================
 Private Function GetPageData(stockCode As String, startDate As Date, endDate As Date, _
                              timeFrame As String, pageNum As Integer) As Variant
@@ -225,26 +225,26 @@ Private Function GetPageData(stockCode As String, startDate As Date, endDate As 
     Dim htmlText As String
     Dim timeFrameCode As String
     
-    ' ƒ^ƒCƒ€ƒtƒŒ[ƒ€ƒR[ƒh‚Ì•ÏŠ·
+    ' ï¿½^ï¿½Cï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Rï¿½[ï¿½hï¿½Ì•ÏŠï¿½
     Select Case timeFrame
-        Case "“úŠÔ"
+        Case "ï¿½ï¿½ï¿½ï¿½"
             timeFrameCode = "d"
-        Case "TŠÔ"
+        Case "ï¿½Tï¿½ï¿½"
             timeFrameCode = "w"
-        Case "ŒŠÔ"
+        Case "ï¿½ï¿½ï¿½ï¿½"
             timeFrameCode = "m"
         Case Else
             timeFrameCode = "d"
     End Select
     
-    ' URL¶¬
+    ' URLï¿½ï¿½ï¿½ï¿½
     url = "https://finance.yahoo.co.jp/quote/" & stockCode & ".T/history?" & _
           "styl=stock&from=" & Format(startDate, "yyyymmdd") & _
           "&to=" & Format(endDate, "yyyymmdd") & _
           "&timeFrame=" & timeFrameCode & _
           "&page=" & pageNum
     
-    ' HTTP—v‹
+    ' HTTPï¿½vï¿½ï¿½
     Set httpReq = CreateObject("MSXML2.XMLHTTP")
     httpReq.Open "GET", url, False
     httpReq.setRequestHeader "User-Agent", "Mozilla/5.0"
@@ -267,7 +267,7 @@ ErrorHandler:
 End Function
 
 ' ===============================================
-' HTML‚©‚çŠ”‰¿ƒf[ƒ^‚ğ’Šo
+' HTMLï¿½ï¿½ï¿½çŠ”ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ğ’Šo
 ' ===============================================
 Private Function ParseStockData(htmlText As String) As Variant
     
@@ -289,46 +289,73 @@ Private Function ParseStockData(htmlText As String) As Variant
     Dim priceVal As Double
     Dim i As Long
     Dim foundTable As Boolean
-    
+    Dim dateColIdx As Long
+    Dim priceColIdx As Long
+    Dim headerText As String
+
     Set htmlDoc = CreateObject("HTMLFile")
     htmlDoc.body.innerHTML = htmlText
     Set tables = htmlDoc.getElementsByTagName("table")
     
-    ' Å‘ås”‚ğ‘z’è
+    ' ï¿½Å‘ï¿½sï¿½ï¿½ï¿½ï¿½zï¿½ï¿½
     Debug.Print "ParseStockData: Found " & tables.Length & " tables in HTML"
     maxRows = 200
     ReDim tempData(1 To maxRows, 1 To 2)
     rowCount = 0
     
-    ' ƒe[ƒuƒ‹‚ğŒŸõ
+    ' ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     For Each table In tables
         Set rows = table.getElementsByTagName("tr")
         
         If rows.Length > 1 Then
             Set cells = rows(0).getElementsByTagName("th")
             foundTable = False
-            
-            ' ƒwƒbƒ_[s‚Åu“ú•tv—ñ‚ğŠm”F
+            dateColIdx = -1
+            priceColIdx = -1
+
+            ' ï¿½wï¿½bï¿½_ï¿½[ï¿½sï¿½Åuï¿½ï¿½ï¿½tï¿½vï¿½Æuï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½lï¿½vï¿½Ì—ñ‚ª‚ï¿½ï¿½
             Debug.Print "  Checking table with " & rows.Length & " rows, " & cells.Length & " header cells"
             For i = 0 To cells.Length - 1
-                Debug.Print "    Header " & i & ": [" & cells(i).innerText & "]"
-                If InStr(cells(i).innerText, "“ú•t") > 0 Then
+                headerText = TrimAll(cells(i).innerText)
+                Debug.Print "    Header " & i & ": [" & headerText & "]"
+
+                ' ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                If InStr(headerText, "ï¿½ï¿½ï¿½t") > 0 Then
+                    dateColIdx = i
                     foundTable = True
-                    Debug.Print "    -> Found date header!"
-                    Exit For
+                    Debug.Print "    -> Found date header at column " & i
+                End If
+
+                ' ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½Dï¿½ï¿½j
+                If InStr(headerText, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½l") > 0 Or InStr(headerText, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") > 0 Then
+                    priceColIdx = i
+                    Debug.Print "    -> Found adjusted close price header at column " & i
                 End If
             Next i
-            
-            If foundTable Then
-                ' ƒf[ƒ^s‚ğˆ—
+
+            ' ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½ÍIï¿½lï¿½ï¿½ï¿½ï¿½ï¿½
+            If priceColIdx = -1 Then
+                For i = 0 To cells.Length - 1
+                    headerText = TrimAll(cells(i).innerText)
+                    If InStr(headerText, "Iï¿½l") > 0 Then
+                        priceColIdx = i
+                        Debug.Print "    -> Found close price header at column " & i
+                        Exit For
+                    End If
+                Next i
+            End If
+
+            If foundTable And dateColIdx >= 0 And priceColIdx >= 0 Then
+                ' ï¿½fï¿½[ï¿½^ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 Debug.Print "ParseStockData: Found data table with " & rows.Length & " rows"
+                Debug.Print "ParseStockData: Using dateColIdx=" & dateColIdx & ", priceColIdx=" & priceColIdx
                 For i = 1 To rows.Length - 1
                     Set row = rows(i)
                     Set cells = row.getElementsByTagName("td")
-                    
-                    If cells.Length >= 6 Then
-                        dateStr = TrimAll(cells(0).innerText)
-                        priceStr = TrimAll(cells(5).innerText)
+
+                    If cells.Length > dateColIdx And cells.Length > priceColIdx Then
+                        dateStr = TrimAll(cells(dateColIdx).innerText)
+                        priceStr = TrimAll(cells(priceColIdx).innerText)
                         priceStr = Replace(priceStr, ",", "")
                         
                         Debug.Print "Row " & i & ": dateStr=[" & dateStr & "] priceStr=[" & priceStr & "]"
@@ -341,7 +368,7 @@ Private Function ParseStockData(htmlText As String) As Variant
                             If Err.Number = 0 Then
 '                                rowCount = rowCount + 1
 '                                If rowCount > maxRows Then
-'                                    ' ”z—ñ‚ğŠg’£
+'                                    ' ï¿½zï¿½ï¿½ï¿½ï¿½gï¿½ï¿½
 '                                    maxRows = maxRows + 100
 '                                    ReDim Preserve tempData(1 To maxRows, 1 To 2)
                                 If Year(dateVal) >= 1900 And Year(dateVal) <= 2100 Then
@@ -380,7 +407,7 @@ Private Function ParseStockData(htmlText As String) As Variant
         End If
     Next table
     
-    ' —LŒø‚Èƒf[ƒ^‚Ì‚İ‚ğ•Ô‚·
+    ' ï¿½Lï¿½ï¿½ï¿½Èƒfï¿½[ï¿½^ï¿½Ì‚İ‚ï¿½Ô‚ï¿½
     If rowCount > 0 Then
         ReDim resultData(1 To rowCount, 1 To 2)
         For i = 1 To rowCount
@@ -400,7 +427,7 @@ ErrorHandler:
 End Function
 
 ' ===============================================
-' “ú–{ŒêŒ`®‚Ì“ú•t‚ğ•ÏŠ·
+' ï¿½ï¿½ï¿½{ï¿½ï¿½`ï¿½ï¿½ï¿½Ì“ï¿½ï¿½tï¿½ï¿½ÏŠï¿½
 ' ===============================================
 Private Function TrimAll(text As String) As String
 
@@ -432,9 +459,9 @@ Private Function ConvertJapaneseDate(dateStr As String) As Date
     Dim pos1 As Integer, pos2 As Integer, pos3 As Integer
     Dim yearStr As String, monthStr As String, dayStr As String
     
-'    pos1 = InStr(dateStr, "”N")
-'    pos2 = InStr(dateStr, "Œ")
-'    pos3 = InStr(dateStr, "“ú")
+'    pos1 = InStr(dateStr, "ï¿½N")
+'    pos2 = InStr(dateStr, "ï¿½ï¿½")
+'    pos3 = InStr(dateStr, "ï¿½ï¿½")
 
     Dim yearVal As Integer, monthVal As Integer, dayVal As Integer
     Dim resultDate As Date
@@ -449,9 +476,9 @@ Private Function ConvertJapaneseDate(dateStr As String) As Date
 
     cleanStr = Trim(dateStr)
 
-    pos1 = InStr(cleanStr, "”N")
-    pos2 = InStr(cleanStr, "Œ")
-    pos3 = InStr(cleanStr, "“ú")
+    pos1 = InStr(cleanStr, "ï¿½N")
+    pos2 = InStr(cleanStr, "ï¿½ï¿½")
+    pos3 = InStr(cleanStr, "ï¿½ï¿½")
     
     If pos1 > 0 And pos2 > 0 And pos3 > 0 Then
 '        yearStr = Left(dateStr, pos1 - 1)
@@ -526,7 +553,7 @@ ErrorHandler:
 End Function
 
 ' ===============================================
-' ƒfƒoƒbƒO—pƒR[ƒh
+' ï¿½fï¿½oï¿½bï¿½Oï¿½pï¿½Rï¿½[ï¿½h
 ' ===============================================
 
 Public Sub DebugYahooFinance()
@@ -538,18 +565,18 @@ Public Sub DebugYahooFinance()
     Dim pageData As Variant
     Dim i As Long
     
-    ' ƒeƒXƒg—pƒpƒ‰ƒ[ƒ^
+    ' ï¿½eï¿½Xï¿½gï¿½pï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^
     stockCode = "8306"
     startDate = DateSerial(2024, 10, 1)
     endDate = DateSerial(2024, 10, 31)
-    timeFrame = "“úŠÔ"
+    timeFrame = "ï¿½ï¿½ï¿½ï¿½"
     
-    Debug.Print "========== ƒfƒoƒbƒOŠJn =========="
+    Debug.Print "========== ï¿½fï¿½oï¿½bï¿½Oï¿½Jï¿½n =========="
     
-    ' 1ƒy[ƒW–Ú‚Ìƒf[ƒ^‚ğæ“¾
+    ' 1ï¿½yï¿½[ï¿½Wï¿½Ú‚Ìƒfï¿½[ï¿½^ï¿½ï¿½ï¿½æ“¾
     pageData = GetPageData(stockCode, startDate, endDate, timeFrame, 1)
     
-    ' pageData‚ÌŒ^‚Æ“à—e‚ğŠm”F
+    ' pageDataï¿½ÌŒ^ï¿½Æ“ï¿½ï¿½eï¿½ï¿½ï¿½mï¿½F
     Debug.Print "IsEmpty(pageData): " & IsEmpty(pageData)
     Debug.Print "TypeName(pageData): " & TypeName(pageData)
     
@@ -564,28 +591,28 @@ Public Sub DebugYahooFinance()
             Debug.Print "UBound(pageData, 2): " & UBound(pageData, 2)
             
             If Err.Number = 0 Then
-                ' Å‰‚Ì3s‚Ìƒf[ƒ^‚ğ•\¦
+                ' ï¿½Åï¿½ï¿½ï¿½3ï¿½sï¿½Ìƒfï¿½[ï¿½^ï¿½ï¿½\ï¿½ï¿½
                 For i = LBound(pageData, 1) To LBound(pageData, 1) + 2
                     If i <= UBound(pageData, 1) Then
                         Debug.Print "Row " & i & ": Date=" & TypeName(pageData(i, 1)) & " (" & pageData(i, 1) & "), Price=" & TypeName(pageData(i, 2)) & " (" & pageData(i, 2) & ")"
                     End If
                 Next i
             Else
-                Debug.Print "”z—ñƒAƒNƒZƒXƒGƒ‰[: " & Err.Description
+                Debug.Print "ï¿½zï¿½ï¿½Aï¿½Nï¿½Zï¿½Xï¿½Gï¿½ï¿½ï¿½[: " & Err.Description
             End If
             On Error GoTo 0
         End If
     Else
-        Debug.Print "ƒf[ƒ^‚ª‹ó‚Å‚·"
+        Debug.Print "ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½Å‚ï¿½"
     End If
     
-    Debug.Print "========== ƒfƒoƒbƒOI—¹ =========="
+    Debug.Print "========== ï¿½fï¿½oï¿½bï¿½Oï¿½Iï¿½ï¿½ =========="
     
-    MsgBox "ƒCƒ~ƒfƒBƒGƒCƒgƒEƒBƒ“ƒhƒEiCtrl+Gj‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢", vbInformation
+    MsgBox "ï¿½Cï¿½~ï¿½fï¿½Bï¿½Gï¿½Cï¿½gï¿½Eï¿½Bï¿½ï¿½ï¿½hï¿½Eï¿½iCtrl+Gï¿½jï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", vbInformation
     
 End Sub
 ' ===============================================
-' HTML\‘¢Šm”F—pƒR[ƒh
+' HTMLï¿½\ï¿½ï¿½ï¿½mï¿½Fï¿½pï¿½Rï¿½[ï¿½h
 ' ===============================================
 
 Public Sub DumpHTML()
@@ -597,10 +624,10 @@ Public Sub DumpHTML()
     Dim txtFile As Object
     Dim filePath As String
     
-    ' ƒeƒXƒg—pURL
+    ' ï¿½eï¿½Xï¿½gï¿½pURL
     url = "https://finance.yahoo.co.jp/quote/8306.T/history?styl=stock&from=20241001&to=20241031&timeFrame=d&page=1"
     
-    ' HTTP—v‹
+    ' HTTPï¿½vï¿½ï¿½
     Set httpReq = CreateObject("MSXML2.XMLHTTP")
     httpReq.Open "GET", url, False
     httpReq.setRequestHeader "User-Agent", "Mozilla/5.0"
@@ -609,7 +636,7 @@ Public Sub DumpHTML()
     If httpReq.Status = 200 Then
         htmlText = httpReq.responseText
         
-        ' ƒfƒXƒNƒgƒbƒv‚ÉHTMLƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä•Û‘¶
+        ' ï¿½fï¿½Xï¿½Nï¿½gï¿½bï¿½vï¿½ï¿½HTMLï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Ä•Û‘ï¿½
         filePath = CreateObject("WScript.Shell").SpecialFolders("Desktop") & "\yahoo_finance_dump.html"
         
         Set fso = CreateObject("Scripting.FileSystemObject")
@@ -617,9 +644,9 @@ Public Sub DumpHTML()
         txtFile.Write htmlText
         txtFile.Close
         
-        MsgBox "HTMLƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚µ‚Ü‚µ‚½:" & vbCrLf & filePath, vbInformation
+        MsgBox "HTMLï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½Û‘ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½:" & vbCrLf & filePath, vbInformation
         
-        ' HTMLDocumentƒIƒuƒWƒFƒNƒg‚Å‰ğÍ‚µ‚Äƒe[ƒuƒ‹î•ñ‚ğ•\¦
+        ' HTMLDocumentï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Å‰ï¿½Í‚ï¿½ï¿½Äƒeï¿½[ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½
         Dim htmlDoc As Object
         Dim tables As Object
         Dim table As Object
@@ -629,25 +656,25 @@ Public Sub DumpHTML()
         htmlDoc.body.innerHTML = htmlText
         Set tables = htmlDoc.getElementsByTagName("table")
         
-        Debug.Print "========== ƒe[ƒuƒ‹î•ñ =========="
-        Debug.Print "ƒe[ƒuƒ‹”: " & tables.Length
+        Debug.Print "========== ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ =========="
+        Debug.Print "ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½ï¿½: " & tables.Length
         
         tableNum = 0
         For Each table In tables
             tableNum = tableNum + 1
-            Debug.Print "--- ƒe[ƒuƒ‹ " & tableNum & " ---"
-            Debug.Print "s”: " & table.getElementsByTagName("tr").Length
+            Debug.Print "--- ï¿½eï¿½[ï¿½uï¿½ï¿½ " & tableNum & " ---"
+            Debug.Print "ï¿½sï¿½ï¿½: " & table.getElementsByTagName("tr").Length
             
             If table.getElementsByTagName("tr").Length > 0 Then
                 Dim firstRow As Object
                 Set firstRow = table.getElementsByTagName("tr")(0)
-                Debug.Print "Å‰‚Ìs‚ÌƒZƒ‹”: " & (firstRow.getElementsByTagName("th").Length + firstRow.getElementsByTagName("td").Length)
+                Debug.Print "ï¿½Åï¿½ï¿½Ìsï¿½ÌƒZï¿½ï¿½ï¿½ï¿½: " & (firstRow.getElementsByTagName("th").Length + firstRow.getElementsByTagName("td").Length)
                 
-                ' Å‰‚Ìs‚Ì“à—e‚ğ•\¦
+                ' ï¿½Åï¿½ï¿½Ìsï¿½Ì“ï¿½ï¿½eï¿½ï¿½\ï¿½ï¿½
                 Dim cells As Object
                 Set cells = firstRow.getElementsByTagName("th")
                 If cells.Length > 0 Then
-                    Debug.Print "ƒwƒbƒ_[: "
+                    Debug.Print "ï¿½wï¿½bï¿½_ï¿½[: "
                     Dim j As Long
                     For j = 0 To cells.Length - 1
                         Debug.Print "  " & j & ": " & cells(j).innerText
@@ -657,7 +684,7 @@ Public Sub DumpHTML()
             Debug.Print ""
         Next table
         
-        MsgBox "ƒCƒ~ƒfƒBƒGƒCƒgƒEƒBƒ“ƒhƒEiCtrl+Gj‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢", vbInformation
+        MsgBox "ï¿½Cï¿½~ï¿½fï¿½Bï¿½Gï¿½Cï¿½gï¿½Eï¿½Bï¿½ï¿½ï¿½hï¿½Eï¿½iCtrl+Gï¿½jï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", vbInformation
     Else
         MsgBox "HTTP Error: " & httpReq.Status, vbCritical
     End If
